@@ -48,7 +48,7 @@ chrome.storage.sync.get(settings, function(items){
   }
 });
 
-var cardClasses = ".issue-card h5 > a, .project-card h5 > a";
+var cardClasses = "a[class^='h5 d-block lh-condensed mb-1 mr-5']";
 var urlBase = "https://github.com";
 
 var cardModal = '<div class="modal" style="display: none"></div>';
