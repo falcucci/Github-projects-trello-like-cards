@@ -27,7 +27,7 @@ var settingsObject = {
     }
   ],
   'gitlo.hub-command-active': true,
-  'gitlo.hub-command-default-branch': 'develop',
+  'gitlo.hub-command-default-branch': 'hml',
   'gitlo.max-branch-name-length': 50
 };
 
@@ -50,6 +50,8 @@ chrome.storage.sync.get(settings, function(items){
 
 var cardClasses = "a[class^='h5 d-block lh-condensed mb-1 mr-5']";
 var urlBase = "https://github.com";
+
+var cardCommandsSelector = '#partial-discussion-header';
 
 var cardModal = '<div class="modal" style="display: none"></div>';
 var wasDoubleClicked = false;
@@ -107,11 +109,11 @@ function getBranchNamePrefix() {
 }
 
 function getOriginalAuthor() {
-  return window.location.pathname.split('/')[1];
+  return window.location.pathname.split('/')[2];
 }
 
 function getGitHubCommand() {
-  return '<p><strong>Hub command: </strong><input style="width: 70%" type="text" value="'
+  return '<p><strong>Hub command: </strong><input class="form-control" style="width: 50%" type="text" value="'
     + gitHubCommand.
     replace('[ticketId]', getTicketNumber()).
     replace('[ORIGINAL_AUTHOR]', getOriginalAuthor()).
@@ -122,7 +124,7 @@ function getGitHubCommand() {
 }
 
 function appendGitHubCommand() {
-  $(getGitHubCommand()).appendTo('.flex-table-item-primary');
+  $(getGitHubCommand()).appendTo(cardCommandsSelector);
 }
 
 function urlHasHash() {
@@ -139,15 +141,15 @@ function getTicketNumber() {
 
 function getBranchName() {
   if(urlHasHash())
-    return 'g' + getTicketNumber() + '-' + $('.js-issue-title').text().trim().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-').substr(0, settingsObject['gitlo.max-branch-name-length']).replace(/-+$/, "");
+    return 'issue-' + getTicketNumber();
   else
     return false;
 }
 
 function appendBranchName() {
-  var branchName = '<p><strong>Branch: </strong><input style="width: 70%" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p>';
+  var branchName = '<p><strong>Branch: </strong><input class="form-control" style="width: 30%" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p>';
   if(branchName !== false) {
-    $(branchName).appendTo('.flex-table-item-primary');
+    $(branchName).appendTo(cardCommandsSelector);
   }
 }
 
