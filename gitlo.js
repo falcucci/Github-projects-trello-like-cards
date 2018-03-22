@@ -113,14 +113,14 @@ function getOriginalAuthor() {
 }
 
 function getGitHubCommand() {
-    return '<dl class="form-group"><p></strong><input class="form-control" style="width: 37%" type="text" value="'
+  return '<dl class="form-group"><p></strong><input class="form-control" style="width: 37%" type="text" value="'
     + gitHubCommand.
     replace('[ticketId]', getTicketNumber()).
     replace('[ORIGINAL_AUTHOR]', getOriginalAuthor()).
     replace('[ORIGINAL_AUTHOR_BRANCH]', settingsObject['gitlo.hub-command-default-branch']).
     replace('[FROM_USER]', getOriginalAuthor()).
     replace('[FROM_BRANCH]', getBranchNamePrefix()+ getBranchName())
-        + '"></p></dl>';
+    + '"></p></dl>';
 }
 
 function appendGitHubCommand() {
@@ -147,7 +147,7 @@ function getBranchName() {
 }
 
 function appendBranchName() {
-    var branchName = '<dl class="form-group"><p><input class="form-control" style="width: 18%; float: left;" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p></dl>';
+  var branchName = '<dl class="form-group"><p><input class="form-control" style="width: 18%; float: left;" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p></dl>';
   if(branchName !== false) {
     $(branchName).appendTo(cardCommandsSelector);
   }
