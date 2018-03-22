@@ -9,9 +9,18 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/projects/*"],
-      "js": ["lib/jquery-3.1.0.min.js", "lib/jquery.modal.min.js", "gitlo.js"],
-      "css": ["css/window.css", "css/jquery.modal.min.css"],
+      "matches": [
+        "https://github.com/*/projects/*"
+      ],
+      "js": [
+        "lib/jquery-3.1.0.min.js",
+        "lib/jquery.modal.min.js",
+        "gitlo.js"
+      ],
+      "css": [
+        "css/window.css",
+        "css/jquery.modal.min.css"
+      ],
       "run_at": "document_end"
     }
   ],
