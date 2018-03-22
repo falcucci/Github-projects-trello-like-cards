@@ -15,7 +15,7 @@ var settingsObject = {
     },
     {
       "orig": "bug",
-      "sugg": "fix"
+      "sugg": "bug"
     },
     {
       "orig": "chore",
@@ -59,7 +59,7 @@ var currentHash = false;
 var gitHubCommand = "hub pull-request -i [ticketId] -b [ORIGINAL_AUTHOR]:[ORIGINAL_AUTHOR_BRANCH] -h [FROM_USER]:[FROM_BRANCH]";
 var createBranchCommand = 'git checkout -b ';
 
-function getCardInformation(url) {
+function getCardInformation(url, isIssue) {
   var card = $('.modal');
   $.ajax(urlBase+ url).done(function(result){
     if(wasDoubleClicked) return false;
@@ -113,14 +113,14 @@ function getOriginalAuthor() {
 }
 
 function getGitHubCommand() {
-  return '<p><strong>Hub command: </strong><input class="form-control" style="width: 50%" type="text" value="'
+    return '<dl class="form-group"><p></strong><input class="form-control" style="width: 37%" type="text" value="'
     + gitHubCommand.
     replace('[ticketId]', getTicketNumber()).
     replace('[ORIGINAL_AUTHOR]', getOriginalAuthor()).
     replace('[ORIGINAL_AUTHOR_BRANCH]', settingsObject['gitlo.hub-command-default-branch']).
     replace('[FROM_USER]', getOriginalAuthor()).
     replace('[FROM_BRANCH]', getBranchNamePrefix()+ getBranchName())
-    + '"></p>';
+        + '"></p></dl>';
 }
 
 function appendGitHubCommand() {
@@ -147,7 +147,7 @@ function getBranchName() {
 }
 
 function appendBranchName() {
-  var branchName = '<p><strong>Branch: </strong><input class="form-control" style="width: 30%" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p>';
+    var branchName = '<dl class="form-group"><p><input class="form-control" style="width: 18%; float: left;" type="text" value="' + createBranchCommand + getBranchNamePrefix() + getBranchName() + '"></p></dl>';
   if(branchName !== false) {
     $(branchName).appendTo(cardCommandsSelector);
   }
