@@ -174,11 +174,14 @@ $(document).ready(function(){
     event.preventDefault();
     var url = $(this).attr('href');
     var urlParts = url.split('/');
+    var isIssue = urlParts[urlParts.length - 2] === 'issues';
     var ticketId = urlParts[urlParts.length - 1];
     window.location.href = '#'+ticketId;
     currentHash = getUrlHash();
 
-    getCardInformation(url);
+    if (isIssue) {
+      getCardInformation(url);
+    }
   });
   body.on('dblclick', cardClasses, function(event){
     wasDoubleClicked = true;
