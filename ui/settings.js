@@ -42,9 +42,6 @@ chrome.storage.sync.get(settings, function(items){
     }
   });
 
-  if (chrome.runtime.error) {
-    console.log("Runtime error.");
-  }
 });
 
 

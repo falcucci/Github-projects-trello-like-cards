@@ -14,6 +14,10 @@ var settingsObject = {
       "sugg": "feature"
     },
     {
+      "orig": "enhancement",
+      "sugg": "enhancement"
+    },
+    {
       "orig": "bug",
       "sugg": "bug"
     },
@@ -43,9 +47,6 @@ chrome.storage.sync.get(settings, function(items){
     }
   });
 
-  if (chrome.runtime.error) {
-    console.log("Runtime error.");
-  }
 });
 
 var cardClasses = "a[class^='h5 d-block lh-condensed mb-1 mr-5']";
